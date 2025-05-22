@@ -13,12 +13,24 @@ class Character:
         self.level = 1
         self.experience = 0
 
-    def level_up(self):
+    def equip_armor(self, armor):
+        armor = {}
+        if armor = self.armor:
+            print("You already have this armor equipped.")
+        else:
+            self.armor = armor
+            print(f"You have equipped {armor} armor.")
+        
+    def gain_exp(self):
+        self.experience += 20
         if self.experience >= 100:
-            self.level += 1
-            self.experience = 0
-            self.health += 20
-            self.stamina += 20
+            self.level_up()
+
+    def level_up(self):
+        self.level += 1
+        self.experience = 0
+        self.health += 20
+        self.stamina += 20
 
 play = input('Do you want to play? (yes/no) ').lower().strip()
 
@@ -39,14 +51,14 @@ if play == "yes":
             choice2 = input('You enter the cabin and find a treasure chest and some armory. Equip? y/n ').lower().strip()
             if choice2 == 'y':
                 print("You have now equipped yourself with a sword and a shield.")
+                hero.equip_armor("sword", 3)
+                hero.equip_armor("shield", 2)
                 print("You are now ready to face the challenges ahead.")
                 hero.experience += 20
                 print("You have gained 20 experience points.")
-                hero.level_up()
-                print("You have leveled up!")  
-                print("You have gained 20 health points.")
-                print("You have gained 20 stamina points.")
-                print(f"You are now level {hero.level}.")
+                hero.gain_exp()
+                print("You have gained 20 experience points.")
+
 
 else:
     print('See you next time!')
